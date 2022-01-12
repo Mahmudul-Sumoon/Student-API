@@ -53,20 +53,43 @@ catch(e){
 };
 
 })
-//post teacher
-app.post("/createteacher",async (req,res)=>{
-    const currentTeacher = new Teacher(req.body);
-    //console.log(currentStudent);
-    //res.send(currentStudent);
-    try{
-    await currentTeacher.save();
-    res.send(currentTeacher);
-}
-catch(e){
-    res.send(e);
-};
+// //post teacher
+// app.post("/createteacher",async (req,res)=>{
+//     const currentTeacher = new Teacher(req.body);
+//     //console.log(currentStudent);
+//     //res.send(currentStudent);
+//     try{
+//     await currentTeacher.save();
+//     res.send(currentTeacher);
+// }
+// catch(e){
+//     res.send(e);
+// };
 
-})
+// })
+//find all student
+app.get("/findallstudent/",async (req,res)=>{
+    try {
+        const post = await Student.find({
+           // name: req.query.name,
+            //phone: req.query.phone,
+        });
+        if (post) {
+            res.status(200).json({
+                data: post,
+            });
+        } else {
+            res.status(500).json({
+                error: "Note is unavailable!",
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            error: "There was a server side error!",
+        });
+    }
+
+});
 
 //find a student
 app.get("/findastudent/:name",async (req,res)=>{
