@@ -8,9 +8,37 @@ const Teacher = require("./models/teacherDataModel");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 //connection check with postman
-// app.get('/r',(req,res)=>{
-// res.send(currentStudent);
-// });
+app.get('/',(req,res)=>{
+res.status(200).json({
+   "title":"Welcome to Student-API",
+   "routes":"There are 5 routes",
+   "POST -> /createstudent":{
+      "method":"POST",
+      "body":"not required",
+      "description":"Will create a student"
+   },
+   "POST -> /createteacher":{
+      "method":"POST",
+      "body":"not required",
+      "description":"Will create a teacher"
+   },
+   "GET -> /findastudent/q?name=sumon&phone=01832852963":{
+      "method":"GET",
+      "body":"not required",
+      "description":"Will show a student"
+   },
+   "PATCH -> /updateastudent/12345678912":{
+      "method":"PATCH",
+      "body":"not required",
+      "description":"Will update student field"
+   },
+   "DELETE -> /deleteastudent/ssumon":{
+      "method":"DELETE",
+      "body":"not required",
+      "description":"Will delete a student from list"
+   }
+});
+});
 //post student
 app.post("/createstudent",async (req,res)=>{
     const currentStudent = new Student(req.body);
