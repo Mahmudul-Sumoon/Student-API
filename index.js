@@ -80,7 +80,7 @@ app.get("/findallstudent/",async (req,res)=>{
         });
         if (post) {
             res.status(200).json({
-                data:`${req.query.name} Updated Successfully!`
+                data: post,
             });
         } else {
             res.status(500).json({
@@ -104,7 +104,7 @@ app.get("/findastudent/:name",async (req,res)=>{
         });
         if (post) {
             res.status(200).json({
-                data:`${req.query.name} Deleted Successfully!`
+                data: post,
             });
         } else {
             res.status(500).json({
