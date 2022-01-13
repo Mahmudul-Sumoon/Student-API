@@ -78,13 +78,19 @@ app.get("/findallstudent/",async (req,res)=>{
            // name: req.query.name,
             //phone: req.query.phone,
         });
-        if (post) {
+        if(post.length == 0)
+        {
+            res.status(500).json({
+                data: "No Student List is Available!",
+            });
+        }
+        else if (post.length>0) {
             res.status(200).json({
                 data: post,
             });
         } else {
             res.status(500).json({
-                data: "Note is unavailable!",
+                data: "Student is unavailable!",
             });
         }
     } catch (err) {
@@ -102,13 +108,13 @@ app.get("/findastudent/:name",async (req,res)=>{
             name: req.query.name,
             phone: req.query.phone,
         });
-        if (post) {
+        if (post.length>0) {
             res.status(200).json({
                 data: post,
             });
         } else {
             res.status(500).json({
-                data: "Note is unavailable!",
+                data: "Student is unavailable!",
             });
         }
     } catch (err) {
@@ -135,7 +141,7 @@ app.patch("/updateastudent/:phone",async (req,res)=>{
             });
         } else {
             res.status(500).json({
-                error: "Note is unavailable!",
+                error: "Student is unavailable!",
             });
         }
     } catch (err) {
@@ -158,7 +164,7 @@ app.delete("/deleteastudent/:name",async (req,res)=>{
             });
         } else {
             res.status(500).json({
-                error: "Note is unavailable!",
+                error: "Student is unavailable!",
             });
         }
     } catch (err) {
