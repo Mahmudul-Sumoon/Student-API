@@ -46,10 +46,14 @@ app.post("/createstudent",async (req,res)=>{
     //res.send(currentStudent);
     try{
     await currentStudent.save();
-    res.send(currentStudent);
+    res.status(201).json({
+        data:`${req.body.name} Created Successfully!`
+    });
 }
 catch(e){
-    res.send(e);
+    res.status(500).json({
+        data:`Something Error Happend!`
+    });
 };
 
 })
@@ -76,16 +80,16 @@ app.get("/findallstudent/",async (req,res)=>{
         });
         if (post) {
             res.status(200).json({
-                data: post,
+                data:`${req.query.name} Updated Successfully!`
             });
         } else {
             res.status(500).json({
-                error: "Note is unavailable!",
+                data: "Note is unavailable!",
             });
         }
     } catch (err) {
         res.status(500).json({
-            error: "There was a server side error!",
+            data: "There was a server side error!",
         });
     }
 
@@ -100,16 +104,16 @@ app.get("/findastudent/:name",async (req,res)=>{
         });
         if (post) {
             res.status(200).json({
-                data: post,
+                data:`${req.query.name} Deleted Successfully!`
             });
         } else {
             res.status(500).json({
-                error: "Note is unavailable!",
+                data: "Note is unavailable!",
             });
         }
     } catch (err) {
         res.status(500).json({
-            error: "There was a server side error!",
+            data: "There was a server side error!",
         });
     }
 
