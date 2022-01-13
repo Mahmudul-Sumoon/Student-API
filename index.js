@@ -137,7 +137,7 @@ app.patch("/updateastudent/:phone",async (req,res)=>{
             },});
         if (post) {
             res.status(200).json({
-                data: post,
+                data:`${req.params.name} Updated Successfully!`
             });
         } else {
             res.status(500).json({
@@ -160,7 +160,7 @@ app.delete("/deleteastudent/:name",async (req,res)=>{
         const post = await Student.deleteOne(myQuery);
         if (post) {
             res.status(200).json({
-                data: post,
+                data:`${req.params.name} Deleted Successfully!`
             });
         } else {
             res.status(500).json({
