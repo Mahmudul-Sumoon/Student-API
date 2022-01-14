@@ -144,12 +144,12 @@ app.patch("/updateastudent/:phone",async (req,res)=>{
         };
         const post = await Student.findOneAndUpdate(myQuery,{
             $set: {
-                name:req.body.name,
+                phone:req.body.phone,
 
             },});
         if (post) {
             res.status(200).json({
-                data:`${req.params.name} Updated Successfully!`
+                data:`${req.params.phone} Updated Successfully!`
             });
         } else {
             res.status(500).json({
