@@ -45,10 +45,22 @@ app.post("/createstudent",async (req,res)=>{
     //console.log(currentStudent);
     //res.send(currentStudent);
     try{
-    await currentStudent.save();
-    res.status(201).json({
-        data:`${req.body.name} Created Successfully!`
-    });
+        const post = await Student.find({
+            email: req.body.email,
+        });
+        if (post.length>0) {
+            res.status(201).json({
+                data:`${req.body.email} Already used!!`
+            });
+        } 
+        else
+        {
+            await currentStudent.save();
+            res.status(201).json({
+                data:`${req.body.name} Created Successfully!`
+            });
+        }
+ 
 }
 catch(e){
     res.status(500).json({
