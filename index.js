@@ -144,7 +144,9 @@ app.patch("/updateastudent/:phone",async (req,res)=>{
         };
         const post = await Student.findOneAndUpdate(myQuery,{
             $set: {
-                phone:req.body.phone,
+                name:req.body.name,
+                email:req.body.email,
+                address:req.body.address
 
             },});
         if (post) {
